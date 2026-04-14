@@ -1,0 +1,54 @@
+<div class="login-page" *transloco="let t">
+  <div class="login-page__video-side">
+    <video
+      class="login-page__video"
+      autoplay
+      muted
+      loop
+      playsinline
+      aria-hidden="true">
+      <source src="assets/videos/LoginVideo.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="login-page__form-side">
+    <div class="login-page__card">
+      <img
+        src="assets/images/logo-atom-chat.png"
+        alt="Atom Chat"
+        class="login-page__form-logo" />
+      <h1 class="login-page__welcome">{{ t('auth.loginWelcome') }}</h1>
+      <p class="login-page__subtitle">{{ t('auth.loginSubtitle') }}</p>
+
+      <div class="login-page__form">
+        <app-input
+          [control]="emailControl"
+          [label]="t('auth.emailLabel')"
+          [placeholder]="t('auth.emailPlaceholder')"
+          [errorMessages]="{
+            required: t('auth.emailRequired'),
+            email: t('auth.emailInvalid')
+          }"
+          type="email">
+        </app-input>
+
+        <app-feedback-alert
+          *ngIf="errorMessageKey"
+          type="error"
+          [dismissible]="true"
+          (dismissed)="errorMessageKey = null">
+          {{ t(errorMessageKey) }}
+        </app-feedback-alert>
+
+        <app-button
+          variant="primary"
+          [fullWidth]="true"
+          [loading]="loading"
+          [disabled]="loading"
+          (clicked)="onSubmit()">
+          {{ t('auth.loginButton') }}
+        </app-button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<div class="tasks-page" *transloco="let t">
+  <header class="tasks-page__header">
+    <h1 class="tasks-page__title">{{ t('tasks.title') }}</h1>
+    <app-button
+      variant="primary"
+      size="md"
+      (clicked)="onCreateTask()">
+      <fa-icon [icon]="faPlus" class="tasks-page__btn-icon"></fa-icon>
+      {{ t('tasks.createTask') }}
+    </app-button>
+  </header>
+
+  <div class="tasks-page__toolbar">
+    <div class="tasks-page__filters">
+      <button
+        class="tasks-page__filter-btn"
+        [class.tasks-page__filter-btn--active]="activeFilter === 'all'"
+        (click)="onFilterChange('all')">
+        <fa-icon [icon]="faList"></fa-icon>
+        {{ t('tasks.allFilter') }}
+      </button>
+      <button
+        class="tasks-page__filter-btn"
+        [class.tasks-page__filter-btn--active]="activeFilter === 'completed'"
+        (click)="onFilterChange('completed')">
+        <fa-icon [icon]="faCheck"></fa-icon>
+        {{ t('tasks.completedFilter') }}
+      </button>
+      <button
+        class="tasks-page__filter-btn"
+        [class.tasks-page__filter-btn--active]="activeFilter === 'pending'"
+        (click)="onFilterChange('pending')">
+        <fa-icon [icon]="faClock"></fa-icon>
+        {{ t('tasks.pendingFilter') }}
+      </button>
+    </div>
+
+    <div class="tasks-page__category-filters" *ngIf="categories.length > 0">
+      <button
+        class="tasks-page__filter-btn"
+        [class.tasks-page__filter-btn--active]="activeCategoryId === null"
+        (click)="onCategoryFilterChange(null)">
+        <fa-icon [icon]="faTag"></fa-icon>
+        {{ t('tasks.allFilter') }}
+      </button>
+      <button
+        class="tasks-page__filter-btn"
+        *ngFor="let cat of categories"
+        [class.tasks-page__filter-btn--active]="activeCategoryId === cat.id"
+        (click)="onCategoryFilterChange(cat.id)">
+        <span class="tasks-page__cat-dot" [style.background-color]="cat.color"></span>
+        {{ cat.name }}
+      </button>
+    </div>
+
+    <div class="tasks-page__search">
+      <app-input
+        [control]="$any(searchControl)"
+        [placeholder]="t('common.search')"
+        type="text">
+      </app-input>
+    </div>
+  </div>
+
+  <app-feedback-alert
+    *ngIf="successMessageKey"
+    type="success"
+    [dismissible]="true"
+    (dismissed)="successMessageKey = null">
+    {{ t(successMessageKey) }}
+  </app-feedback-alert>
+
+  <app-feedback-alert
+    *ngIf="errorMessageKey"
+    type="error"
+    [dismissible]="true"
+    (dismissed)="errorMessageKey = null">
+    {{ t(errorMessageKey) }}
+  </app-feedback-alert>
+
+  <app-loading-state
+    *ngIf="loading"
+    [message]="t('common.loading')">
+  </app-loading-state>
+
+  <ng-container *ngIf="!loading">
+    <app-empty-state
+      *ngIf="tasks.length === 0"
+      [message]="t('tasks.empty')">
+    </app-empty-state>
+
+    <ul class="tasks-page__list" *ngIf="tasks.length > 0">
+      <li
+        class="tasks-page__item"
+        [class.tasks-page__item--completed]="task.completed"
+        [style.border-left-color]="getCategoryColor(task.categoryId)"
+        [class.tasks-page__item--has-category]="!!getCategoryColor(task.categoryId)"
+        *ngFor="let task of tasks; trackBy: trackByTaskId">
+        <button
+          class="tasks-page__toggle"
+          [class.tasks-page__toggle--checked]="task.completed"
+          (click)="onToggleTask(task)"
+          [attr.aria-label]="task.completed ? t('tasks.pendingLabel') : t('tasks.completedLabel')">
+          <fa-icon [icon]="faCheck" *ngIf="task.completed"></fa-icon>
+        </button>
+        <div class="tasks-page__content">
+          <span class="tasks-page__task-title">{{ task.title }}</span>
+          <span class="tasks-page__task-desc" *ngIf="task.description">{{ task.description }}</span>
+          <span class="tasks-page__task-category" *ngIf="getCategoryName(task.categoryId)">
+            <span class="tasks-page__cat-dot" [style.background-color]="getCategoryColor(task.categoryId)"></span>
+            {{ getCategoryName(task.categoryId) }}
+          </span>
+        </div>
+        <div class="tasks-page__actions">
+          <button
+            class="tasks-page__action-btn"
+            (click)="onViewTask(task)"
+            [attr.aria-label]="t('tasks.detailTitle')">
+            <fa-icon [icon]="faEye"></fa-icon>
+          </button>
+          <button
+            class="tasks-page__action-btn"
+            (click)="onEditTask(task)"
+            [attr.aria-label]="t('tasks.editTask')">
+            <fa-icon [icon]="faPen"></fa-icon>
+          </button>
+          <button
+            class="tasks-page__action-btn tasks-page__action-btn--danger"
+            (click)="onDeleteTask(task)"
+            [attr.aria-label]="t('tasks.deleteTask')">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="tasks-page__pagination" *ngIf="hasNextPage">
+      <app-button
+        variant="secondary"
+        [loading]="loadingMore"
+        (clicked)="onLoadMore()">
+        {{ t('tasks.loadMore') }}
+      </app-button>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,91 @@
+<div class="home-page" *transloco="let t">
+
+  <section class="home-hero" aria-labelledby="heroTitle">
+    <div class="home-hero__container">
+      <h1 id="heroTitle" class="home-hero__title">
+        {{ t('home.heroTitle') }}
+        <span class="home-hero__highlight">{{ t('home.heroTitleHighlight') }}</span>
+      </h1>
+      <p class="home-hero__subtitle">{{ t('home.heroSubtitle') }}</p>
+      <a routerLink="/login" class="home-hero__cta">
+        {{ t('home.heroCta') }}
+        <fa-icon [icon]="faArrowRight" class="home-hero__cta-icon"></fa-icon>
+      </a>
+    </div>
+  </section>
+
+  <section class="home-features" aria-labelledby="featuresTitle">
+    <div class="home-features__container">
+      <h2 id="featuresTitle" class="home-section-title">{{ t('home.featuresTitle') }}</h2>
+      <p class="home-section-subtitle">{{ t('home.featuresSubtitle') }}</p>
+      <div class="home-features__grid">
+        <article class="home-features__card">
+          <div class="home-features__icon-wrap home-features__icon-wrap--tasks">
+            <fa-icon [icon]="faClipboardList"></fa-icon>
+          </div>
+          <h3 class="home-features__card-title">{{ t('home.featureTasksTitle') }}</h3>
+          <p class="home-features__card-desc">{{ t('home.featureTasksDesc') }}</p>
+        </article>
+        <article class="home-features__card">
+          <div class="home-features__icon-wrap home-features__icon-wrap--categories">
+            <fa-icon [icon]="faPalette"></fa-icon>
+          </div>
+          <h3 class="home-features__card-title">{{ t('home.featureCategoriesTitle') }}</h3>
+          <p class="home-features__card-desc">{{ t('home.featureCategoriesDesc') }}</p>
+        </article>
+        <article class="home-features__card">
+          <div class="home-features__icon-wrap home-features__icon-wrap--filters">
+            <fa-icon [icon]="faFilter"></fa-icon>
+          </div>
+          <h3 class="home-features__card-title">{{ t('home.featureFiltersTitle') }}</h3>
+          <p class="home-features__card-desc">{{ t('home.featureFiltersDesc') }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-steps" aria-labelledby="stepsTitle">
+    <div class="home-steps__container">
+      <h2 id="stepsTitle" class="home-section-title">{{ t('home.stepsTitle') }}</h2>
+      <p class="home-section-subtitle">{{ t('home.stepsSubtitle') }}</p>
+      <div class="home-steps__grid">
+        <div class="home-steps__step">
+          <div class="home-steps__number">1</div>
+          <div class="home-steps__icon">
+            <fa-icon [icon]="faEnvelope"></fa-icon>
+          </div>
+          <h3 class="home-steps__step-title">{{ t('home.step1Title') }}</h3>
+          <p class="home-steps__step-desc">{{ t('home.step1Desc') }}</p>
+        </div>
+        <div class="home-steps__step">
+          <div class="home-steps__number">2</div>
+          <div class="home-steps__icon">
+            <fa-icon [icon]="faListCheck"></fa-icon>
+          </div>
+          <h3 class="home-steps__step-title">{{ t('home.step2Title') }}</h3>
+          <p class="home-steps__step-desc">{{ t('home.step2Desc') }}</p>
+        </div>
+        <div class="home-steps__step">
+          <div class="home-steps__number">3</div>
+          <div class="home-steps__icon">
+            <fa-icon [icon]="faChartLine"></fa-icon>
+          </div>
+          <h3 class="home-steps__step-title">{{ t('home.step3Title') }}</h3>
+          <p class="home-steps__step-desc">{{ t('home.step3Desc') }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-cta" aria-labelledby="ctaTitle">
+    <div class="home-cta__container">
+      <h2 id="ctaTitle" class="home-cta__title">{{ t('home.ctaTitle') }}</h2>
+      <p class="home-cta__subtitle">{{ t('home.ctaSubtitle') }}</p>
+      <a routerLink="/login" class="home-cta__button">
+        {{ t('home.ctaButton') }}
+        <fa-icon [icon]="faArrowRight" class="home-cta__btn-icon"></fa-icon>
+      </a>
+    </div>
+  </section>
+
+</div>

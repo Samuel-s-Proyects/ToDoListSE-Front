@@ -1,0 +1,105 @@
+<header class="private-topbar" *transloco="let t" role="banner">
+  <div class="private-topbar__inner">
+    <div class="private-topbar__left">
+      <button
+        class="private-topbar__menu-btn"
+        (click)="onToggleMenu()"
+        [attr.aria-label]="t('layout.openMenu')">
+        <fa-icon [icon]="faBars"></fa-icon>
+      </button>
+      <a class="private-topbar__brand" routerLink="/tasks">
+        <img
+          src="assets/images/logo-atom-chat.png"
+          alt="Atom Chat"
+          class="private-topbar__logo" />
+      </a>
+    </div>
+
+    <div class="private-topbar__actions">
+      <div class="private-topbar__dropdown" (appClickOutside)="langMenuOpen = false">
+        <button
+          class="private-topbar__icon-btn"
+          (click)="onToggleLangMenu()"
+          [attr.aria-expanded]="langMenuOpen"
+          [attr.aria-label]="t('layout.langLabel')">
+          <fa-icon [icon]="faGlobe"></fa-icon>
+          <span class="private-topbar__btn-label">
+            {{ transloco.getActiveLang() === 'es' ? t('layout.langEs') : t('layout.langEn') }}
+          </span>
+        </button>
+        <div class="private-topbar__menu" *ngIf="langMenuOpen" role="menu">
+          <button
+            class="private-topbar__menu-item"
+            [class.private-topbar__menu-item--active]="transloco.getActiveLang() === 'es'"
+            (click)="onSetLang('es')"
+            role="menuitem">
+            {{ t('layout.langEs') }}
+          </button>
+          <button
+            class="private-topbar__menu-item"
+            [class.private-topbar__menu-item--active]="transloco.getActiveLang() === 'en'"
+            (click)="onSetLang('en')"
+            role="menuitem">
+            {{ t('layout.langEn') }}
+          </button>
+        </div>
+      </div>
+
+      <div class="private-topbar__dropdown" (appClickOutside)="themeMenuOpen = false">
+        <button
+          class="private-topbar__icon-btn"
+          (click)="onToggleThemeMenu()"
+          [attr.aria-expanded]="themeMenuOpen"
+          [attr.aria-label]="t('layout.themeLabel')">
+          <fa-icon [icon]="themeService.currentPreference === 'dark' ? faMoon : themeService.currentPreference === 'light' ? faSun : faDesktop"></fa-icon>
+        </button>
+        <div class="private-topbar__menu" *ngIf="themeMenuOpen" role="menu">
+          <button
+            class="private-topbar__menu-item"
+            [class.private-topbar__menu-item--active]="themeService.currentPreference === 'light'"
+            (click)="onSetTheme('light')"
+            role="menuitem">
+            <fa-icon [icon]="faSun"></fa-icon>
+            {{ t('layout.themeLight') }}
+          </button>
+          <button
+            class="private-topbar__menu-item"
+            [class.private-topbar__menu-item--active]="themeService.currentPreference === 'dark'"
+            (click)="onSetTheme('dark')"
+            role="menuitem">
+            <fa-icon [icon]="faMoon"></fa-icon>
+            {{ t('layout.themeDark') }}
+          </button>
+          <button
+            class="private-topbar__menu-item"
+            [class.private-topbar__menu-item--active]="themeService.currentPreference === 'system'"
+            (click)="onSetTheme('system')"
+            role="menuitem">
+            <fa-icon [icon]="faDesktop"></fa-icon>
+            {{ t('layout.themeSystem') }}
+          </button>
+        </div>
+      </div>
+
+      <div class="private-topbar__dropdown" (appClickOutside)="userMenuOpen = false">
+        <button
+          class="private-topbar__user-btn"
+          (click)="onToggleUserMenu()"
+          [attr.aria-expanded]="userMenuOpen"
+          [attr.aria-label]="userName">
+          <fa-icon [icon]="faUser"></fa-icon>
+          <span class="private-topbar__btn-label">{{ userName }}</span>
+        </button>
+        <div class="private-topbar__menu" *ngIf="userMenuOpen" role="menu">
+          <button
+            class="private-topbar__menu-item private-topbar__menu-item--danger"
+            (click)="onLogout()"
+            role="menuitem">
+            <fa-icon [icon]="faRightFromBracket"></fa-icon>
+            {{ t('layout.logout') }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

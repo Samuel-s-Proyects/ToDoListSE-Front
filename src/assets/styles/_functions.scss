@@ -1,0 +1,13 @@
+// ==========================================================================
+// Functions — SCSS utility functions
+// ==========================================================================
+
+@use "variables" as vars;
+
+@function spacing($multiplier) {
+  @return $multiplier * 4px;
+}
+
+@function rem($px) {
+  @return ($px / 16) * 1rem;
+}

@@ -1,0 +1,66 @@
+<div class="categories-page" *transloco="let t">
+  <header class="categories-page__header">
+    <h1 class="categories-page__title">{{ t('categories.title') }}</h1>
+    <app-button
+      variant="primary"
+      size="md"
+      (clicked)="onCreateCategory()">
+      <fa-icon [icon]="faPlus" class="categories-page__btn-icon"></fa-icon>
+      {{ t('categories.createCategory') }}
+    </app-button>
+  </header>
+
+  <app-feedback-alert
+    *ngIf="successMessageKey"
+    type="success"
+    [dismissible]="true"
+    (dismissed)="successMessageKey = null">
+    {{ t(successMessageKey) }}
+  </app-feedback-alert>
+
+  <app-feedback-alert
+    *ngIf="errorMessageKey"
+    type="error"
+    [dismissible]="true"
+    (dismissed)="errorMessageKey = null">
+    {{ t(errorMessageKey) }}
+  </app-feedback-alert>
+
+  <app-loading-state
+    *ngIf="loading"
+    [message]="t('common.loading')">
+  </app-loading-state>
+
+  <ng-container *ngIf="!loading">
+    <app-empty-state
+      *ngIf="categories.length === 0"
+      [message]="t('categories.empty')">
+    </app-empty-state>
+
+    <ul class="categories-page__list" *ngIf="categories.length > 0">
+      <li
+        class="categories-page__item"
+        *ngFor="let category of categories; trackBy: trackByCategoryId">
+        <span
+          class="categories-page__color-dot"
+          [style.background-color]="category.color">
+        </span>
+        <span class="categories-page__name">{{ category.name }}</span>
+        <div class="categories-page__actions">
+          <button
+            class="categories-page__action-btn"
+            (click)="onEditCategory(category)"
+            [attr.aria-label]="t('categories.editCategory')">
+            <fa-icon [icon]="faPen"></fa-icon>
+          </button>
+          <button
+            class="categories-page__action-btn categories-page__action-btn--danger"
+            (click)="onDeleteCategory(category)"
+            [attr.aria-label]="t('categories.deleteCategory')">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+</div>

@@ -1,0 +1,12 @@
+<div class="private-layout">
+  <app-private-topbar (menuToggled)="onToggleSidebar()"></app-private-topbar>
+  <div class="private-layout__body">
+    <app-private-sidebar
+      [open]="sidebarOpen"
+      (closed)="onSidebarClosed()">
+    </app-private-sidebar>
+    <main class="private-layout__content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

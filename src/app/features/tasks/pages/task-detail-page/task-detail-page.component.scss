@@ -1,0 +1,120 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+.task-detail {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-4;
+    margin-bottom: vars.$spacing-6;
+  }
+
+  &__back-btn {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-1;
+    padding: vars.$spacing-2 vars.$spacing-3;
+    border: none;
+    border-radius: vars.$border-radius-base;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: vars.$font-size-sm;
+    cursor: pointer;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__title {
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+
+  &__card {
+    background-color: var(--color-surface);
+    border: vars.$border-width-default solid var(--color-border-light);
+    border-radius: vars.$border-radius-md;
+    padding: vars.$spacing-6;
+    box-shadow: vars.$shadow-sm;
+  }
+
+  &__task-title {
+    font-size: vars.$font-size-lg;
+    font-weight: vars.$font-weight-semibold;
+    color: var(--color-text-primary);
+    margin: 0 0 vars.$spacing-6 0;
+  }
+
+  &__meta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-4;
+    margin-bottom: vars.$spacing-6;
+
+    @include mix.screen-sm {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-1;
+  }
+
+  &__label {
+    font-size: vars.$font-size-xs;
+    font-weight: vars.$font-weight-semibold;
+    color: var(--color-text-disabled);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__value {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-primary);
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: vars.$spacing-1;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+    padding: vars.$spacing-1 vars.$spacing-2;
+    border-radius: vars.$border-radius-sm;
+    width: fit-content;
+
+    &--completed {
+      color: var(--color-success);
+      background-color: rgba(76, 175, 80, 0.1);
+    }
+
+    &--pending {
+      color: var(--color-warning);
+      background-color: rgba(255, 152, 0, 0.1);
+    }
+  }
+
+  &__description {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-2;
+    border-top: vars.$border-width-default solid var(--color-border-light);
+    padding-top: vars.$spacing-6;
+  }
+
+  &__desc-text {
+    font-size: vars.$font-size-base;
+    color: var(--color-text-primary);
+    line-height: vars.$line-height-relaxed;
+    margin: 0;
+    white-space: pre-wrap;
+  }
+}

@@ -1,0 +1,21 @@
+<div
+  class="feedback-alert"
+  *ngIf="visible"
+  [class.feedback-alert--success]="type === 'success'"
+  [class.feedback-alert--warning]="type === 'warning'"
+  [class.feedback-alert--error]="type === 'error'"
+  [class.feedback-alert--info]="type === 'info'"
+  role="alert">
+  <span class="feedback-alert__message">
+    <ng-container *ngIf="message">{{ message }}</ng-container>
+    <ng-content></ng-content>
+  </span>
+  <button
+    *ngIf="dismissible"
+    class="feedback-alert__dismiss"
+    (click)="dismiss()"
+    type="button"
+    aria-label="Dismiss">
+    &times;
+  </button>
+</div>

@@ -1,0 +1,11 @@
+.task-form-dialog__form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+  padding-top: 0.5rem;
+}
+
+.task-form-dialog__textarea {
+  width: 100%;
+}

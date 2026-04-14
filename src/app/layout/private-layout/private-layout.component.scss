@@ -1,0 +1,21 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+.private-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &__body {
+    display: flex;
+    flex: 1;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+    @include mix.container;
+    padding-top: vars.$spacing-6;
+    padding-bottom: vars.$spacing-8;
+  }
+}

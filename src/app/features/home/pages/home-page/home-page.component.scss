@@ -1,0 +1,220 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+:host { display: block; }
+
+.home-page { display: flex; flex-direction: column; }
+
+.home-section-title {
+  font-size: vars.$font-size-xl;
+  font-weight: vars.$font-weight-bold;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin: 0 0 vars.$spacing-2;
+  @include mix.screen-md { font-size: vars.$font-size-2xl; }
+}
+
+.home-section-subtitle {
+  font-size: vars.$font-size-sm;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0 auto vars.$spacing-10;
+  max-width: 540px;
+  @include mix.screen-md { font-size: vars.$font-size-base; }
+}
+
+// Hero
+.home-hero {
+  padding: vars.$spacing-16 vars.$spacing-4 vars.$spacing-12;
+  background: linear-gradient(160deg, var(--color-brand-primary-light) 0%, var(--color-page-bg) 60%);
+  @include mix.screen-md { padding: vars.$spacing-16 vars.$spacing-6; }
+
+  &__container { max-width: 720px; margin: 0 auto; text-align: center; }
+
+  &__title {
+    font-size: vars.$font-size-2xl;
+    font-weight: vars.$font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0 0 vars.$spacing-4;
+    line-height: vars.$line-height-tight;
+    @include mix.screen-md { font-size: vars.$font-size-3xl; }
+  }
+
+  &__highlight { color: var(--color-brand-primary); display: block; }
+
+  &__subtitle {
+    font-size: vars.$font-size-base;
+    color: var(--color-text-secondary);
+    margin: 0 auto vars.$spacing-8;
+    line-height: vars.$line-height-relaxed;
+    max-width: 520px;
+    @include mix.screen-md { font-size: vars.$font-size-md; }
+  }
+
+  &__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+    padding: vars.$spacing-3 vars.$spacing-8;
+    border-radius: vars.$border-radius-full;
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-semibold;
+    text-decoration: none;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+    &:hover { background-color: var(--color-brand-primary-hover); color: var(--color-text-inverse); }
+  }
+
+  &__cta-icon { font-size: vars.$font-size-sm; }
+}
+
+// Features
+.home-features {
+  padding: vars.$spacing-12 vars.$spacing-4;
+  background-color: var(--color-surface);
+  @include mix.screen-md { padding: vars.$spacing-16 vars.$spacing-6; }
+
+  &__container { max-width: 960px; margin: 0 auto; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-6;
+    @include mix.screen-md { grid-template-columns: repeat(3, 1fr); gap: vars.$spacing-8; }
+  }
+
+  &__card {
+    text-align: center;
+    padding: vars.$spacing-8 vars.$spacing-6;
+    border-radius: vars.$border-radius-md;
+    border: 1px solid var(--color-border-light);
+    background: var(--color-page-bg);
+    @include mix.transition-shadow;
+    &:hover { box-shadow: var(--shadow-md); }
+  }
+
+  &__icon-wrap {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: vars.$border-radius-base;
+    font-size: vars.$font-size-xl;
+    margin-bottom: vars.$spacing-4;
+    &--tasks { background-color: var(--color-brand-primary-light); color: var(--color-brand-primary); }
+    &--categories { background-color: var(--color-accent-light); color: var(--color-accent-500); }
+    &--filters { background-color: rgba(76, 175, 80, 0.1); color: var(--color-success); }
+  }
+
+  &__card-title {
+    font-size: vars.$font-size-md;
+    font-weight: vars.$font-weight-semibold;
+    color: var(--color-text-primary);
+    margin: 0 0 vars.$spacing-2;
+  }
+
+  &__card-desc {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-secondary);
+    line-height: vars.$line-height-relaxed;
+    margin: 0;
+  }
+}
+
+// Steps
+.home-steps {
+  padding: vars.$spacing-12 vars.$spacing-4;
+  @include mix.screen-md { padding: vars.$spacing-16 vars.$spacing-6; }
+
+  &__container { max-width: 960px; margin: 0 auto; }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-8;
+    @include mix.screen-md { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  &__step { text-align: center; }
+
+  &__number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: vars.$border-radius-full;
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-bold;
+    margin-bottom: vars.$spacing-3;
+  }
+
+  &__icon {
+    font-size: vars.$font-size-2xl;
+    color: var(--color-text-secondary);
+    margin-bottom: vars.$spacing-3;
+  }
+
+  &__step-title {
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-semibold;
+    color: var(--color-text-primary);
+    margin: 0 0 vars.$spacing-2;
+  }
+
+  &__step-desc {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-secondary);
+    line-height: vars.$line-height-relaxed;
+    margin: 0 auto;
+    max-width: 280px;
+  }
+}
+
+// CTA
+.home-cta {
+  padding: vars.$spacing-12 vars.$spacing-4;
+  background: linear-gradient(160deg, var(--color-brand-primary-light) 0%, var(--color-surface) 100%);
+  text-align: center;
+  @include mix.screen-md { padding: vars.$spacing-16 vars.$spacing-6; }
+
+  &__container { max-width: 600px; margin: 0 auto; }
+
+  &__title {
+    font-size: vars.$font-size-xl;
+    font-weight: vars.$font-weight-bold;
+    color: var(--color-text-primary);
+    margin: 0 0 vars.$spacing-2;
+    @include mix.screen-md { font-size: vars.$font-size-2xl; }
+  }
+
+  &__subtitle {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-secondary);
+    margin: 0 0 vars.$spacing-8;
+    @include mix.screen-md { font-size: vars.$font-size-base; }
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+    padding: vars.$spacing-3 vars.$spacing-8;
+    border-radius: vars.$border-radius-full;
+    background-color: var(--color-brand-primary);
+    color: var(--color-text-inverse);
+    font-size: vars.$font-size-base;
+    font-weight: vars.$font-weight-semibold;
+    text-decoration: none;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+    &:hover { background-color: var(--color-brand-primary-hover); color: var(--color-text-inverse); }
+  }
+
+  &__btn-icon { font-size: vars.$font-size-sm; }
+}

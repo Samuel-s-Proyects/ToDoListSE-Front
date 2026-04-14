@@ -1,0 +1,15 @@
+@use "assets/styles/variables" as vars;
+
+.spinner {
+  display: inline-block;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-accent-500);
+  border-radius: vars.$border-radius-full;
+  animation: spin vars.$duration-slow linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

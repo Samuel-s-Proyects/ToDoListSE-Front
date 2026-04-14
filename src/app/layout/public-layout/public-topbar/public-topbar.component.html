@@ -1,0 +1,85 @@
+<header class="public-topbar" *transloco="let t" role="banner">
+  <div class="public-topbar__inner">
+    <a class="public-topbar__brand" routerLink="/" aria-label="Atom Chat Home">
+      <img
+        src="assets/images/logo-atom-chat.png"
+        alt="Atom Chat"
+        class="public-topbar__logo" />
+    </a>
+
+    <nav class="public-topbar__actions" [attr.aria-label]="t('layout.navigation')">
+      <div class="public-topbar__dropdown" (appClickOutside)="langMenuOpen = false">
+        <button
+          class="public-topbar__icon-btn"
+          (click)="onToggleLangMenu()"
+          [attr.aria-expanded]="langMenuOpen"
+          [attr.aria-label]="t('layout.langLabel')">
+          <fa-icon [icon]="faGlobe"></fa-icon>
+          <span class="public-topbar__btn-label">
+            {{ transloco.getActiveLang() === 'es' ? t('layout.langEs') : t('layout.langEn') }}
+          </span>
+        </button>
+        <div class="public-topbar__menu" *ngIf="langMenuOpen" role="menu">
+          <button
+            class="public-topbar__menu-item"
+            [class.public-topbar__menu-item--active]="transloco.getActiveLang() === 'es'"
+            (click)="onSetLang('es')"
+            role="menuitem">
+            {{ t('layout.langEs') }}
+          </button>
+          <button
+            class="public-topbar__menu-item"
+            [class.public-topbar__menu-item--active]="transloco.getActiveLang() === 'en'"
+            (click)="onSetLang('en')"
+            role="menuitem">
+            {{ t('layout.langEn') }}
+          </button>
+        </div>
+      </div>
+
+      <div class="public-topbar__dropdown" (appClickOutside)="themeMenuOpen = false">
+        <button
+          class="public-topbar__icon-btn"
+          (click)="onToggleThemeMenu()"
+          [attr.aria-expanded]="themeMenuOpen"
+          [attr.aria-label]="t('layout.themeLabel')">
+          <fa-icon [icon]="themeService.currentPreference === 'dark' ? faMoon : themeService.currentPreference === 'light' ? faSun : faDesktop"></fa-icon>
+        </button>
+        <div class="public-topbar__menu" *ngIf="themeMenuOpen" role="menu">
+          <button
+            class="public-topbar__menu-item"
+            [class.public-topbar__menu-item--active]="themeService.currentPreference === 'light'"
+            (click)="onSetTheme('light')"
+            role="menuitem">
+            <fa-icon [icon]="faSun"></fa-icon>
+            {{ t('layout.themeLight') }}
+          </button>
+          <button
+            class="public-topbar__menu-item"
+            [class.public-topbar__menu-item--active]="themeService.currentPreference === 'dark'"
+            (click)="onSetTheme('dark')"
+            role="menuitem">
+            <fa-icon [icon]="faMoon"></fa-icon>
+            {{ t('layout.themeDark') }}
+          </button>
+          <button
+            class="public-topbar__menu-item"
+            [class.public-topbar__menu-item--active]="themeService.currentPreference === 'system'"
+            (click)="onSetTheme('system')"
+            role="menuitem">
+            <fa-icon [icon]="faDesktop"></fa-icon>
+            {{ t('layout.themeSystem') }}
+          </button>
+        </div>
+      </div>
+
+      <a
+        *ngIf="!authSession.isAuthenticated"
+        class="public-topbar__login-btn"
+        routerLink="/login">
+        <fa-icon [icon]="faRightToBracket"></fa-icon>
+        {{ t('layout.login') }}
+      </a>
+    </nav>
+  </div>
+</header>

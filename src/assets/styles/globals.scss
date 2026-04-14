@@ -1,0 +1,88 @@
+// ==========================================================================
+// Globals — base styles, resets, and global behaviors
+// ==========================================================================
+
+@use "@angular/material" as mat;
+@use "variables" as vars;
+@use "mixins" as mix;
+@use "tokens";
+@use "themes";
+
+// Angular Material core
+@include mat.core();
+
+// Light theme by default
+@include mat.all-component-themes(themes.$app-light-theme);
+
+// Dark theme override
+[data-theme="dark"] {
+  @include mat.all-component-colors(themes.$app-dark-theme);
+}
+
+// Reset & base
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: vars.$font-family-primary;
+  font-size: vars.$font-size-base;
+  line-height: vars.$line-height-base;
+  color: var(--color-text-primary);
+  background-color: var(--color-page-bg);
+  @include mix.transition-colors;
+}
+
+// Global scrollbar
+body {
+  @include mix.custom-scrollbar;
+}
+
+// Focus visible
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+:focus-visible {
+  @include mix.focus-ring;
+}
+
+// Links
+a {
+  color: var(--color-accent-500);
+  text-decoration: none;
+  @include mix.transition-colors;
+
+  &:hover {
+    color: var(--color-accent-hover);
+  }
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// App shell
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

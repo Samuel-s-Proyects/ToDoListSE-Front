@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>{{ data.titleKey | transloco }}</h2>
+<mat-dialog-content>
+  <p class="create-account-dialog__message">{{ data.messageKey | transloco }}</p>
+  <p class="create-account-dialog__email">{{ data.email }}</p>
+  <app-input
+    [control]="nameControl"
+    [label]="data.nameLabelKey | transloco"
+    [placeholder]="data.namePlaceholderKey | transloco"
+    [errorMessages]="{ required: (data.nameRequiredKey | transloco) }"
+    type="text">
+  </app-input>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <app-button
+    variant="text"
+    (clicked)="onCancel()">
+    {{ data.cancelKey | transloco }}
+  </app-button>
+  <app-button
+    variant="primary"
+    (clicked)="onConfirm()">
+    {{ data.confirmKey | transloco }}
+  </app-button>
+</mat-dialog-actions>

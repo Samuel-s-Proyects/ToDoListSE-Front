@@ -1,0 +1,175 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+.private-topbar {
+  background-color: var(--color-surface);
+  border-bottom: vars.$border-width-default solid var(--color-border-light);
+  position: sticky;
+  top: 0;
+  z-index: vars.$z-sticky;
+  @include mix.transition-colors;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 vars.$spacing-4;
+
+    @include mix.screen-md {
+      height: 64px;
+      padding: 0 vars.$spacing-6;
+    }
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+  }
+
+  &__menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: vars.$border-radius-base;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: vars.$font-size-lg;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    @include mix.screen-lg {
+      display: none;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  &__logo {
+    height: 28px;
+    width: auto;
+    object-fit: contain;
+
+    @include mix.screen-md {
+      height: 32px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-1;
+
+    @include mix.screen-md {
+      gap: vars.$spacing-2;
+    }
+  }
+
+  &__dropdown {
+    position: relative;
+  }
+
+  &__icon-btn {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-1;
+    padding: vars.$spacing-2;
+    border: none;
+    border-radius: vars.$border-radius-base;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: vars.$font-size-sm;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__user-btn {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+    padding: vars.$spacing-2 vars.$spacing-3;
+    border: none;
+    border-radius: vars.$border-radius-base;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    font-size: vars.$font-size-sm;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__btn-label {
+    display: none;
+
+    @include mix.screen-sm {
+      display: inline;
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: calc(100% + vars.$spacing-1);
+    right: 0;
+    min-width: 160px;
+    background-color: var(--color-surface);
+    border: vars.$border-width-default solid var(--color-border-light);
+    border-radius: vars.$border-radius-base;
+    box-shadow: vars.$shadow-md;
+    padding: vars.$spacing-1 0;
+    z-index: vars.$z-dropdown;
+  }
+
+  &__menu-item {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-2;
+    width: 100%;
+    padding: vars.$spacing-2 vars.$spacing-4;
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-size: vars.$font-size-sm;
+    cursor: pointer;
+    text-align: left;
+    @include mix.transition-colors;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &--active {
+      color: var(--color-brand-primary);
+      font-weight: vars.$font-weight-semibold;
+    }
+
+    &--danger:hover {
+      color: var(--color-error);
+    }
+  }
+}

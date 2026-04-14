@@ -1,0 +1,47 @@
+<aside
+  class="private-sidebar"
+  [class.private-sidebar--open]="open"
+  *transloco="let t"
+  role="navigation"
+  [attr.aria-label]="t('layout.navigation')">
+
+  <div
+    class="private-sidebar__overlay"
+    *ngIf="open"
+    (click)="onOverlayClick()"
+    (keydown.escape)="onOverlayClick()"
+    tabindex="-1"
+    role="presentation">
+  </div>
+
+  <div class="private-sidebar__panel">
+    <div class="private-sidebar__header">
+      <span class="private-sidebar__title">{{ t('layout.navigation') }}</span>
+      <button
+        class="private-sidebar__close-btn"
+        (click)="onClose()"
+        [attr.aria-label]="t('layout.closeMenu')">
+        <fa-icon [icon]="faXmark"></fa-icon>
+      </button>
+    </div>
+
+    <nav class="private-sidebar__nav">
+      <a
+        class="private-sidebar__link"
+        routerLink="/tasks"
+        routerLinkActive="private-sidebar__link--active"
+        (click)="onNavClick()">
+        <fa-icon [icon]="faListCheck" class="private-sidebar__link-icon"></fa-icon>
+        {{ t('layout.tasks') }}
+      </a>
+      <a
+        class="private-sidebar__link"
+        routerLink="/categories"
+        routerLinkActive="private-sidebar__link--active"
+        (click)="onNavClick()">
+        <fa-icon [icon]="faTags" class="private-sidebar__link-icon"></fa-icon>
+        {{ t('layout.categories') }}
+      </a>
+    </nav>
+  </div>
+</aside>

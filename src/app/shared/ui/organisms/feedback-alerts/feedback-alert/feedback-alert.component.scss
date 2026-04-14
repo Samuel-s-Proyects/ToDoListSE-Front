@@ -1,0 +1,57 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+:host {
+  display: block;
+  margin-bottom: vars.$spacing-3;
+}
+
+.feedback-alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: vars.$spacing-3 vars.$spacing-4;
+  border-radius: vars.$border-radius-base;
+  font-size: vars.$font-size-sm;
+  @include mix.transition-base;
+
+  &--success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--color-success);
+    border-left: 3px solid var(--color-success);
+  }
+
+  &--warning {
+    background-color: rgba(255, 152, 0, 0.1);
+    color: var(--color-warning);
+    border-left: 3px solid var(--color-warning);
+  }
+
+  &--error {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--color-error);
+    border-left: 3px solid var(--color-error);
+  }
+
+  &--info {
+    background-color: rgba(33, 150, 243, 0.1);
+    color: var(--color-info);
+    border-left: 3px solid var(--color-info);
+  }
+
+  &__message {
+    flex: 1;
+  }
+
+  &__dismiss {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: vars.$font-size-lg;
+    cursor: pointer;
+    padding: 0;
+    margin-left: vars.$spacing-2;
+    line-height: 1;
+    @include mix.focus-visible-ring;
+  }
+}

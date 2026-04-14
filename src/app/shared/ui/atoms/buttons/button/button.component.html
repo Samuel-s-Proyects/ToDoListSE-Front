@@ -1,0 +1,22 @@
+<button
+  class="app-button"
+  [class.app-button--primary]="variant === 'primary'"
+  [class.app-button--secondary]="variant === 'secondary'"
+  [class.app-button--accent]="variant === 'accent'"
+  [class.app-button--warn]="variant === 'warn'"
+  [class.app-button--text]="variant === 'text'"
+  [class.app-button--sm]="size === 'sm'"
+  [class.app-button--md]="size === 'md'"
+  [class.app-button--lg]="size === 'lg'"
+  [class.app-button--full-width]="fullWidth"
+  [class.app-button--loading]="loading"
+  [disabled]="disabled || loading"
+  [type]="type"
+  (click)="onClick()">
+  <span class="app-button__spinner" *ngIf="loading">
+    <app-spinner [size]="16"></app-spinner>
+  </span>
+  <span class="app-button__content" [class.app-button__content--hidden]="loading">
+    <ng-content></ng-content>
+  </span>
+</button>

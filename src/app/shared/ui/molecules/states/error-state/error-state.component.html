@@ -1,0 +1,10 @@
+<div class="error-state">
+  <p class="error-state__message">{{ message }}</p>
+  <app-button
+    *ngIf="retryLabel"
+    variant="secondary"
+    size="sm"
+    (clicked)="onRetry()">
+    {{ retryLabel }}
+  </app-button>
+</div>

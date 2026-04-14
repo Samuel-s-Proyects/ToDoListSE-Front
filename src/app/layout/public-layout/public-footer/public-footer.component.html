@@ -1,0 +1,60 @@
+<footer class="public-footer" *transloco="let t" role="contentinfo">
+  <div class="public-footer__top">
+    <div class="public-footer__brand">
+      <img
+        src="assets/images/logo-atom-chat.png"
+        alt="Atom"
+        class="public-footer__logo" />
+    </div>
+
+    <div class="public-footer__columns">
+      <div class="public-footer__column">
+        <h3 class="public-footer__column-title">{{ t('layout.footerTermsTitle') }}</h3>
+        <a href="#" class="public-footer__link">{{ t('layout.footerTermsLink') }}</a>
+        <a href="#" class="public-footer__link">{{ t('layout.footerPrivacyLink') }}</a>
+        <a href="#" class="public-footer__link">{{ t('layout.footerSubscriptionLink') }}</a>
+      </div>
+      <div class="public-footer__column">
+        <h3 class="public-footer__column-title">{{ t('layout.footerCompanyTitle') }}</h3>
+        <a href="#" class="public-footer__link">{{ t('layout.footerAboutLink') }}</a>
+        <a href="#" class="public-footer__link">{{ t('layout.footerCareersLink') }}</a>
+      </div>
+      <div class="public-footer__column">
+        <h3 class="public-footer__column-title">{{ t('layout.footerSupportTitle') }}</h3>
+        <a href="#" class="public-footer__link">{{ t('layout.footerSupportPortalLink') }}</a>
+        <a href="#" class="public-footer__link">{{ t('layout.footerAcademyLink') }}</a>
+      </div>
+      <div class="public-footer__column">
+        <h3 class="public-footer__column-title">{{ t('layout.footerCommunityTitle') }}</h3>
+        <a href="#" class="public-footer__link">{{ t('layout.footerBlogLink') }}</a>
+        <a href="#" class="public-footer__link">{{ t('layout.footerTutorialsLink') }}</a>
+      </div>
+    </div>
+
+    <div class="public-footer__social">
+      <a href="#" class="public-footer__social-link" aria-label="Facebook">
+        <fa-icon [icon]="faFacebook"></fa-icon>
+      </a>
+      <a href="#" class="public-footer__social-link" aria-label="Instagram">
+        <fa-icon [icon]="faInstagram"></fa-icon>
+      </a>
+      <a href="#" class="public-footer__social-link" aria-label="LinkedIn">
+        <fa-icon [icon]="faLinkedinIn"></fa-icon>
+      </a>
+      <a href="#" class="public-footer__social-link" aria-label="YouTube">
+        <fa-icon [icon]="faYoutube"></fa-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="public-footer__divider"></div>
+
+  <div class="public-footer__bottom">
+    <span class="public-footer__copyright">
+      &copy; {{ currentYear }} Atom. {{ t('layout.footerRights') }}
+    </span>
+    <span class="public-footer__address">
+      {{ t('layout.footerAddress') }}
+    </span>
+  </div>
+</footer>

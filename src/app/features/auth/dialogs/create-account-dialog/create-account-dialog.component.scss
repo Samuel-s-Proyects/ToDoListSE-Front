@@ -1,0 +1,12 @@
+@use "assets/styles/variables" as vars;
+
+.create-account-dialog__message {
+  margin-bottom: vars.$spacing-2;
+  color: var(--color-text-secondary);
+}
+
+.create-account-dialog__email {
+  font-weight: vars.$font-weight-semibold;
+  color: var(--color-text-primary);
+  margin-bottom: vars.$spacing-4;
+}

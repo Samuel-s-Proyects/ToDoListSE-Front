@@ -1,0 +1,135 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+$sidebar-width: 240px;
+
+.private-sidebar {
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background-color: var(--color-overlay);
+    z-index: vars.$z-overlay;
+    opacity: 0;
+    visibility: hidden;
+    @include mix.transition-opacity;
+
+    @include mix.screen-lg {
+      display: none;
+    }
+  }
+
+  &__panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: $sidebar-width;
+    background-color: var(--color-surface);
+    border-right: vars.$border-width-default solid var(--color-border-light);
+    z-index: vars.$z-overlay + 1;
+    transform: translateX(-100%);
+    transition: transform vars.$duration-base vars.$ease-default;
+    display: flex;
+    flex-direction: column;
+    @include mix.transition-colors;
+
+    @include mix.screen-lg {
+      position: sticky;
+      top: 0;
+      transform: translateX(0);
+      height: calc(100vh - 64px);
+      z-index: auto;
+    }
+  }
+
+  &--open {
+    .private-sidebar__overlay {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .private-sidebar__panel {
+      transform: translateX(0);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: vars.$spacing-4;
+    border-bottom: vars.$border-width-default solid var(--color-border-light);
+
+    @include mix.screen-lg {
+      display: none;
+    }
+  }
+
+  &__title {
+    font-weight: vars.$font-weight-semibold;
+    font-size: vars.$font-size-base;
+    color: var(--color-text-primary);
+  }
+
+  &__close-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: vars.$border-radius-base;
+    background: transparent;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding: vars.$spacing-3;
+    gap: vars.$spacing-1;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-3;
+    padding: vars.$spacing-3 vars.$spacing-4;
+    border-radius: vars.$border-radius-base;
+    color: var(--color-text-secondary);
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+    text-decoration: none;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      background-color: var(--color-surface-hover);
+      color: var(--color-text-primary);
+    }
+
+    &--active {
+      background-color: var(--color-accent-light);
+      color: var(--color-accent-500);
+      font-weight: vars.$font-weight-semibold;
+
+      &:hover {
+        background-color: var(--color-accent-light);
+        color: var(--color-accent-500);
+      }
+    }
+  }
+
+  &__link-icon {
+    width: 18px;
+    text-align: center;
+  }
+}

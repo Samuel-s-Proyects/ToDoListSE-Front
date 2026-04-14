@@ -1,0 +1,37 @@
+<ng-container *transloco="let t">
+  <h2 mat-dialog-title>{{ t(data.titleKey) }}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="form" class="category-form-dialog__form">
+      <app-input
+        [control]="$any(form.controls.name)"
+        [label]="t(data.nameLabelKey)"
+        [errorMessages]="{ required: t(data.nameRequiredKey) }"
+        type="text">
+      </app-input>
+      <div class="category-form-dialog__color-row">
+        <label class="category-form-dialog__color-label" for="categoryColorInput">{{ t(data.colorLabelKey) }}</label>
+        <input
+          id="categoryColorInput"
+          type="color"
+          formControlName="color"
+          class="category-form-dialog__color-input" />
+        <span
+          class="category-form-dialog__color-preview"
+          [style.background-color]="form.value.color">
+        </span>
+      </div>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <app-button
+      variant="text"
+      (clicked)="onCancel()">
+      {{ t(data.cancelKey) }}
+    </app-button>
+    <app-button
+      variant="primary"
+      (clicked)="onConfirm()">
+      {{ t(data.confirmKey) }}
+    </app-button>
+  </mat-dialog-actions>
+</ng-container>

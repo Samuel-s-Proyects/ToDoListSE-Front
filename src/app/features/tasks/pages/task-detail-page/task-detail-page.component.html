@@ -1,0 +1,64 @@
+<div class="task-detail" *transloco="let t">
+  <app-loading-state
+    *ngIf="loading"
+    [message]="t('common.loading')">
+  </app-loading-state>
+
+  <app-feedback-alert
+    *ngIf="errorMessageKey"
+    type="error"
+    [dismissible]="true"
+    (dismissed)="errorMessageKey = null">
+    {{ t(errorMessageKey) }}
+  </app-feedback-alert>
+
+  <ng-container *ngIf="!loading && task">
+    <header class="task-detail__header">
+      <button
+        class="task-detail__back-btn"
+        (click)="onBack()"
+        [attr.aria-label]="t('common.back')">
+        <fa-icon [icon]="faArrowLeft"></fa-icon>
+        {{ t('common.back') }}
+      </button>
+      <h1 class="task-detail__title">{{ t('tasks.detailTitle') }}</h1>
+    </header>
+
+    <div class="task-detail__card">
+      <h2 class="task-detail__task-title">{{ task.title }}</h2>
+
+      <div class="task-detail__meta">
+        <div class="task-detail__field">
+          <span class="task-detail__label">{{ t('tasks.statusLabel') }}</span>
+          <span
+            class="task-detail__status"
+            [class.task-detail__status--completed]="task.completed"
+            [class.task-detail__status--pending]="!task.completed">
+            <fa-icon [icon]="task.completed ? faCheck : faClock"></fa-icon>
+            {{ task.completed ? t('tasks.completedLabel') : t('tasks.pendingLabel') }}
+          </span>
+        </div>
+
+        <div class="task-detail__field" *ngIf="categoryName">
+          <span class="task-detail__label">{{ t('tasks.categoryLabel') }}</span>
+          <span class="task-detail__value">{{ categoryName }}</span>
+        </div>
+
+        <div class="task-detail__field">
+          <span class="task-detail__label">{{ t('tasks.createdAtLabel') }}</span>
+          <span class="task-detail__value">{{ formatDate(task.createdAt) }}</span>
+        </div>
+
+        <div class="task-detail__field">
+          <span class="task-detail__label">{{ t('tasks.updatedAtLabel') }}</span>
+          <span class="task-detail__value">{{ formatDate(task.updatedAt) }}</span>
+        </div>
+      </div>
+
+      <div class="task-detail__description" *ngIf="task.description">
+        <span class="task-detail__label">{{ t('tasks.descriptionLabel') }}</span>
+        <p class="task-detail__desc-text">{{ task.description }}</p>
+      </div>
+    </div>
+  </ng-container>
+</div>

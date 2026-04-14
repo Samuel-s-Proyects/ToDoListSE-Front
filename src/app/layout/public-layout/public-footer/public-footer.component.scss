@@ -1,0 +1,122 @@
+@use "assets/styles/variables" as vars;
+@use "assets/styles/mixins" as mix;
+
+.public-footer {
+  background-color: var(--color-surface);
+  border-top: vars.$border-width-default solid var(--color-border-light);
+  @include mix.transition-colors;
+
+  &__top {
+    @include mix.container;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-8;
+    padding-top: vars.$spacing-10;
+    padding-bottom: vars.$spacing-8;
+
+    @include mix.screen-md {
+      grid-template-columns: auto 1fr auto;
+      align-items: start;
+    }
+  }
+
+  &__brand {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  &__columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: vars.$spacing-6;
+
+    @include mix.screen-md {
+      grid-template-columns: repeat(4, 1fr);
+      justify-self: center;
+    }
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$spacing-2;
+  }
+
+  &__column-title {
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-bold;
+    color: var(--color-brand-primary);
+    margin: 0 0 vars.$spacing-1 0;
+  }
+
+  &__link {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    @include mix.transition-colors;
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__social {
+    display: flex;
+    align-items: center;
+    gap: vars.$spacing-3;
+  }
+
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    @include mix.transition-colors;
+    @include mix.focus-visible-ring;
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+  }
+
+  &__divider {
+    @include mix.container;
+    height: vars.$border-width-thick;
+    background-color: var(--color-brand-primary);
+  }
+
+  &__bottom {
+    @include mix.container;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: vars.$spacing-2;
+    padding-top: vars.$spacing-6;
+    padding-bottom: vars.$spacing-6;
+
+    @include mix.screen-sm {
+      flex-direction: row;
+      justify-content: center;
+      gap: vars.$spacing-6;
+    }
+  }
+
+  &__copyright {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-secondary);
+  }
+
+  &__address {
+    font-size: vars.$font-size-sm;
+    color: var(--color-text-secondary);
+  }
+}
