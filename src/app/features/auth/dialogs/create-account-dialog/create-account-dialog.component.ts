@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { CreateAccountDialogData, CreateAccountDialogResult } from './create-account-dialog.model';
@@ -8,16 +8,13 @@ import { CreateAccountDialogData, CreateAccountDialogResult } from './create-acc
   templateUrl: './create-account-dialog.component.html',
   styleUrls: ['./create-account-dialog.component.scss'],
 })
-export class CreateAccountDialogComponent implements OnInit {
+export class CreateAccountDialogComponent {
   nameControl = new FormControl('', [Validators.required, Validators.minLength(1)]);
 
   constructor(
     public dialogRef: MatDialogRef<CreateAccountDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CreateAccountDialogData,
   ) {}
-
-  ngOnInit(): void {
-  }
 
   onCancel(): void {
     this.dialogRef.close({ confirmed: false } as CreateAccountDialogResult);
