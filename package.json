@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
+    "set-env": "npx tsx src/set-env.ts",
+    "set-env:prod": "npx tsx src/set-env.ts --production",
+    "start": "npm run set-env && ng serve",
+    "build": "npm run set-env:prod && ng build",
+    "build:dev": "npm run set-env && ng build --configuration=development",
+    "watch": "npm run set-env && ng build --watch --configuration development",
+    "test": "npm run set-env && ng test",
     "lint": "ng lint"
   },
   "private": true,
@@ -43,6 +46,7 @@
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "7.2.0",
     "@typescript-eslint/parser": "7.2.0",
+    "dotenv": "^17.4.2",
     "eslint": "^8.57.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -55,6 +59,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "tsx": "^4.21.0",
     "typescript": "~5.4.2"
   }
 }

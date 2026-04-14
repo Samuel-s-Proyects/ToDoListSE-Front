@@ -27,6 +27,8 @@ modules/.vscode
 
 # Don't check in secret files
 *secret.js
+.env
+.env.production
 
 # Ignore npm/yarn debug log
 npm-debug.log

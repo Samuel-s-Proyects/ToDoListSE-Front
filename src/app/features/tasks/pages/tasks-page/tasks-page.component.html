@@ -89,8 +89,9 @@
       [message]="t('tasks.empty')">
     </app-empty-state>
 
-    <ul class="tasks-page__list" *ngIf="tasks.length > 0">
-      <li
+    <div class="tasks-page__scroll-area" *ngIf="tasks.length > 0">
+      <ul class="tasks-page__list">
+        <li
         class="tasks-page__item"
         [class.tasks-page__item--completed]="task.completed"
         [style.border-left-color]="getCategoryColor(task.categoryId)"
@@ -134,13 +135,14 @@
       </li>
     </ul>
 
-    <div class="tasks-page__pagination" *ngIf="hasNextPage">
-      <app-button
-        variant="secondary"
-        [loading]="loadingMore"
-        (clicked)="onLoadMore()">
-        {{ t('tasks.loadMore') }}
-      </app-button>
+      <div class="tasks-page__pagination" *ngIf="hasNextPage">
+        <app-button
+          variant="secondary"
+          [loading]="loadingMore"
+          (clicked)="onLoadMore()">
+          {{ t('tasks.loadMore') }}
+        </app-button>
+      </div>
     </div>
   </ng-container>
 </div>

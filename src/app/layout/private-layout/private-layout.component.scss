@@ -14,6 +14,8 @@
   &__content {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
     @include mix.container;
     padding-top: vars.$spacing-6;
     padding-bottom: vars.$spacing-8;

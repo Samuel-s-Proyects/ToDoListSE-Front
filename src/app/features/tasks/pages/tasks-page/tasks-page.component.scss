@@ -1,11 +1,18 @@
 @use "assets/styles/mixins" as mix;
 
 :host {
-  display: block;
+  display: flex;
+  flex: 1;
+  min-height: 0;
 }
 
 .tasks-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   padding: 1.5rem 1rem;
 
@@ -120,6 +127,14 @@
     gap: 0.5rem;
   }
 
+  &__scroll-area {
+    flex: 1;
+    min-height: 0;
+    max-height: 72vh;
+    overflow-y: auto;
+    padding-right: 0.25rem;
+  }
+
   &__item {
     display: flex;
     align-items: center;
@@ -225,6 +240,8 @@
   &__pagination {
     display: flex;
     justify-content: center;
-    margin-top: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    flex-shrink: 0;
   }
 }

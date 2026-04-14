@@ -1,0 +1,33 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci --legacy-peer-deps
+
+      - run: npx ng lint
+
+      - name: Generate environment files
+        run: |
+          echo "API_KEY=${{ secrets.API_KEY }}" > .env
+          echo "API_BASE_URL=http://localhost:4200" >> .env
+          npm run set-env
+
+      - run: npx ng build --configuration=production
+
+      - run: npx ng test --watch=false --browsers=ChromeHeadless

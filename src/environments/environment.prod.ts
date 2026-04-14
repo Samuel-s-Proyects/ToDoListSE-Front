@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: "https://us-central1-todolistsamuelescobar.cloudfunctions.net/api",
-  apiKey: "${API_KEY}",
+  apiBaseUrl: "REPLACE_AT_BUILD_TIME",
+  apiKey: "REPLACE_AT_BUILD_TIME",
 };
